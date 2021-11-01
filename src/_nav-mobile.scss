@@ -1,0 +1,123 @@
+@mixin elr-hamburger($config: ()) {
+    $config: extend((
+        width: 30px,
+        color: $elr-blue,
+        thickness: 4px
+    ), $config);
+
+    $width: map-get($config, width);
+    $color: map-get($config, color);
+    $thickness: map-get($config, thickness);
+
+    @include elr-square($config: (width: $width));
+    position: relative;
+    border: 0;
+    box-shadow: none;
+    cursor: pointer;
+
+    span,
+    &::before,
+    &::after {
+        content: '';
+        height: $thickness;
+        width: $width;
+        background-color: $color;
+        display: block;
+        position: absolute;
+        left: 0;
+        border-radius: $thickness;
+    }
+
+    span {
+        top: ($width / 2) - ($thickness / 2);
+    }
+
+    &::before {
+        top: ($thickness / 2);
+    }
+
+    &::after {
+        bottom: ($thickness / 2);
+    }
+}
+
+@mixin elr-mobile-toggle-button($config: ()) {
+    $config: extend((
+        color: $link-color,
+        bg-color: transparent,
+        font-size: 18px,
+        border-radius: 3px,
+        border-color: 'none',
+        hover-color: transparent
+    ), $config);
+
+    $color: map-get($config, color);
+    $bg-color: map-get($config, bg-color);
+    $font-size: map-get($config, font-size);
+    $border-radius: map-get($config, border-radius);
+    $border-color: map-get($config, border-color);
+    $hover-color: map-get($config, hover-color);
+
+    font-size: to-rems($font-size);
+    background-color: $bg-color;
+    color: $color;
+    padding: to-rems(10px);
+    line-height: 1;
+    width: auto;
+
+    @if $border-radius > 0 {
+        border-radius: $border-radius;
+    }
+
+    @if $border-color == 'none' {
+        border: 0;
+    } @else {
+        border: 1px solid $border-color;
+    }
+
+    .hamburger {
+        @include elr-icon-close(
+            $config: (
+                width: 20px,
+                thickness: 3px
+            )
+        );
+        @include elr-hamburger(
+            $config: (
+                width: 20px,
+                color: $color,
+                thickness: 3px
+            )
+        );
+        display: inline-block;
+        margin-left: to-rems(5px);
+        margin-right: to-rems(5px);
+    }
+
+    .menu-label {
+        position: relative;
+        top: -3px;
+        padding-right: to-rems(5px);
+
+        ~ .hamburger {
+            margin-right: 0;
+        }
+    }
+
+    &:hover {
+        @if $bg-color == transparent {
+            background-color: $link-color;
+            color: $white;
+
+            .hamburger {
+                span,
+                &::before,
+                &::after {
+                    background-color: $white;
+                }
+            }
+        } @else {
+            background-color: $hover-color;
+        }
+    }
+}
