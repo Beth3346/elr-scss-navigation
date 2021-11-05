@@ -1,1 +1,105 @@
 @import "elr-scss-functions/src/main";
+
+@mixin elr-navigation($config: ()) {
+  $config: extend(
+    (
+      color: #1976d2,
+      hover-color: #f81190,
+      background-color: transparent,
+    ),
+    $config
+  );
+
+  $color: map-get($config, color);
+  $hover-color: map-get($config, hover-color);
+  $background-color: map-get($config, background-color);
+
+  padding: 0;
+  margin: 0;
+
+  &,
+  > * {
+    box-sizing: border-box;
+  }
+
+  .elr-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .elr-menu-item {
+    margin: 0;
+    position: relative;
+
+    // > button:hover,
+    > button:focus-within,
+    .active {
+      .elr-submenu {
+        display: block !important;
+      }
+    }
+
+    a,
+    button {
+      cursor: pointer;
+      color: $color;
+      transition: 0.3s color ease-in-out, 0.3s box-shadow ease-in-out;
+      background: transparent;
+      border: 0;
+      font-size: 16px;
+      text-decoration: underline;
+      line-height: 1;
+      padding: 8px;
+      margin: 0;
+      display: block;
+
+      &:focus {
+        outline: none;
+        text-decoration: none;
+      }
+
+      &:focus-visible {
+        box-shadow: 0 0 0 2px #fff, 0 0 1px 4px $color;
+        text-decoration: none;
+        color: $hover-color;
+      }
+
+      &:hover {
+        color: $hover-color;
+      }
+    }
+  }
+
+  .elr-submenu {
+    list-style: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 100px;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+  }
+
+  .elr-submenu-item {
+    display: block;
+    padding: 0;
+    margin: 0;
+
+    a {
+      padding: 8px;
+      font-size: 14px;
+      // background-color: plum;
+      display: block;
+      text-align: left;
+      text-decoration: none;
+      transition: 0.3s background-color;
+    }
+  }
+}

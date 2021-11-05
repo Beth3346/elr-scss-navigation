@@ -1,6 +1,5 @@
 # elr-scss-navigation
 
-[![Build Status](https://travis-ci.com/Beth3346/elr-scss-navigation.svg?branch=master)](https://travis-ci.com/Beth3346/elr-scss-navigation)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![npm](https://img.shields.io/npm/dm/elr-scss-navigation.svg?style=flat)](https://npmjs.com/package/elr-scss-navigation)
 
