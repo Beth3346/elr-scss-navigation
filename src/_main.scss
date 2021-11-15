@@ -34,11 +34,14 @@
     margin: 0;
     position: relative;
 
-    // > button:hover,
+    > button:hover,
     > button:focus-within,
     .active {
       .elr-submenu {
-        display: block !important;
+        // display: block !important;
+        opacity: 1;
+        visibility: visible;
+        max-height: 500px;
       }
     }
 
@@ -46,29 +49,48 @@
     button {
       cursor: pointer;
       color: $color;
-      transition: 0.3s color ease-in-out, 0.3s box-shadow ease-in-out;
       background: transparent;
       border: 0;
       font-size: 16px;
-      text-decoration: underline;
+      text-decoration: none;
       line-height: 1;
-      padding: 8px;
-      margin: 0;
+      padding: 8px 16px;
+      margin: 0 4px 4px;
       display: block;
+      position: relative;
+      transition: 0.3s background-color, 0.3s color, 0.3s box-shadow ease-in-out;
+      border-radius: 3px;
+      font-weight: 700;
+      // background-color: pink;
+
+      &.elr-has-submenu {
+        padding-right: 28px;
+
+        &::after {
+          content: "\25BC";
+          font-size: 8px;
+          position: absolute;
+          right: 14px;
+          top: calc(50% - 2px);
+        }
+      }
 
       &:focus {
         outline: none;
-        text-decoration: none;
+        // text-decoration: none;
       }
 
       &:focus-visible {
         box-shadow: 0 0 0 2px #fff, 0 0 1px 4px $color;
-        text-decoration: none;
+        // text-decoration: underline;
         color: $hover-color;
       }
 
       &:hover {
-        color: $hover-color;
+        // color: $hover-color;
+        background-color: $color;
+        color: #fff;
+        // text-decoration: underline;
       }
     }
   }
@@ -78,27 +100,33 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 100px;
+    z-index: 1;
+    top: calc(100% + 4px);
+    left: 4px;
+    min-width: 150px;
     padding: 0;
     margin: 0;
+    padding-top: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    display: none;
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    // display: none;
+    transition: all 0.3s ease-in-out;
   }
 
   .elr-submenu-item {
     display: block;
-    padding: 0;
+    padding: 4px;
     margin: 0;
 
     a {
       padding: 8px;
       font-size: 14px;
-      // background-color: plum;
       display: block;
       text-align: left;
       text-decoration: none;
+      font-weight: 400;
       transition: 0.3s background-color;
     }
   }
