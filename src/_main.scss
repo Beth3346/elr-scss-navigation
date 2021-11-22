@@ -1,10 +1,11 @@
 @import "elr-scss-functions/src/main";
+@import "elr-scss-config/src/main";
 
 @mixin elr-navigation($config: ()) {
   $config: extend(
     (
-      color: #1976d2,
-      hover-color: #f81190,
+      color: $primary-color,
+      hover-color: $secondary-color,
       background-color: transparent,
     ),
     $config
@@ -51,15 +52,15 @@
       color: $color;
       background: transparent;
       border: 0;
-      font-size: 16px;
+      font-size: $base-fontsize;
       text-decoration: none;
       line-height: 1;
-      padding: 8px 16px;
-      margin: 0 4px 4px;
+      padding: ($base-fontsize * 0.5) $base-fontsize;
+      margin: 0 ($base-fontsize * 0.25) ($base-fontsize * 0.25);
       display: block;
       position: relative;
       transition: 0.3s background-color, 0.3s color, 0.3s box-shadow ease-in-out;
-      border-radius: 3px;
+      border-radius: $border-radius;
       font-weight: 700;
       // background-color: pink;
 
@@ -68,9 +69,9 @@
 
         &::after {
           content: "\25BC";
-          font-size: 8px;
+          font-size: ($base-fontsize * 0.5);
           position: absolute;
-          right: 14px;
+          right: $base-fontsize * 0.875;
           top: calc(50% - 2px);
         }
       }
@@ -88,23 +89,23 @@
 
       &:hover {
         background-color: $color;
-        color: #fff;
+        color: $white;
       }
     }
   }
 
   .elr-submenu {
     list-style: none;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: $border;
+    border-radius: $border-radius;
     position: absolute;
     z-index: 1;
     top: calc(100% + 4px);
-    left: 4px;
+    left: $base-fontsize * 0.25;
     min-width: 150px;
     padding: 0;
     margin: 0;
-    padding-top: 4px;
+    padding-top: $base-fontsize * 0.25;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     max-height: 0;
     visibility: hidden;
@@ -115,7 +116,7 @@
 
   .elr-submenu-item {
     display: block;
-    padding: 4px;
+    padding: $base-fontsize * 0.25;
     margin: 0;
 
     a {
@@ -144,11 +145,8 @@
   $color: map-get($config, color);
   $thickness: map-get($config, thickness);
 
-  @include elr-square(
-    $config: (
-      width: $width,
-    )
-  );
+  width: $width;
+  height: $width;
   position: relative;
   border: 0;
   box-shadow: none;
