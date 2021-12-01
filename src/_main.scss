@@ -23,7 +23,7 @@
     box-sizing: border-box;
   }
 
-  .elr-menu {
+  .menu {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -31,14 +31,14 @@
     justify-content: flex-start;
   }
 
-  .elr-menu-item {
+  .menu-item {
     margin: 0;
     position: relative;
 
     > button:hover,
     > button:focus-within,
     .active {
-      .elr-submenu {
+      .submenu {
         // display: block !important;
         opacity: 1;
         visibility: visible;
@@ -64,7 +64,7 @@
       font-weight: 700;
       // background-color: pink;
 
-      &.elr-has-submenu {
+      &.has-submenu {
         padding-right: 28px;
 
         &::after {
@@ -94,7 +94,7 @@
     }
   }
 
-  .elr-submenu {
+  .submenu {
     list-style: none;
     border: $border;
     border-radius: $border-radius;
@@ -114,7 +114,7 @@
     transition: all 0.3s ease-in-out;
   }
 
-  .elr-submenu-item {
+  .submenu-item {
     display: block;
     padding: $base-fontsize * 0.25;
     margin: 0;
